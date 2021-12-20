@@ -1,9 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 
-
 URL = "https://realpython.github.io/fake-jobs/"
-page = requests.get(URL)
+proxies = {
+    'http': "http://127.0.0.1:10809",
+    'https': "http://127.0.0.1:10809"
+}
+page = requests.get(url=URL, proxies=proxies)
 
 soup = BeautifulSoup(page.content, "html.parser")
 results = soup.find(id="ResultsContainer")
